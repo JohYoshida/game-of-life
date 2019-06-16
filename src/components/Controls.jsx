@@ -14,6 +14,7 @@ class Controls extends Component {
               max="99"
               step="1"
               value={this.props.x}
+              onChange={evt => this.props.updateInputX(evt)} />
             <label>{this.props.x}</label>
           </div>
           <div>
@@ -25,6 +26,7 @@ class Controls extends Component {
               max="99"
               step="1"
               value={this.props.y}
+              onChange={evt => this.props.updateInputY(evt)} />
             <label>{this.props.y}</label>
           </div>
         </form>

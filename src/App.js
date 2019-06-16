@@ -20,11 +20,21 @@ class App extends Component {
         <Controls
           x={x}
           y={y}
+          updateInputX={this.updateInputX}
+          updateInputY={this.updateInputY}
         />
         <GameBoard x={x} y={y} data={data} />
       </div>
     );
   }
+
+  updateInputX = evt => {
+    this.setState({ x: evt.target.value });
+  };
+
+  updateInputY = evt => {
+    this.setState({ y: evt.target.value });
+  };
 }
 
 export default App;
