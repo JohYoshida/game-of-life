@@ -29,6 +29,9 @@ class Controls extends Component {
               onChange={evt => this.props.updateInputY(evt)} />
             <label>{this.props.y}</label>
           </div>
+          <div>
+            <button type="button" onClick={this.props.populateBoard}>Populate</button>
+          </div>
         </form>
       </div>
     );

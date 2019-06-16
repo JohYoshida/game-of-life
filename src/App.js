@@ -22,6 +22,7 @@ class App extends Component {
           y={y}
           updateInputX={this.updateInputX}
           updateInputY={this.updateInputY}
+          populateBoard={this.populateBoard}
         />
         <GameBoard x={x} y={y} data={data} />
       </div>
@@ -35,6 +36,20 @@ class App extends Component {
   updateInputY = evt => {
     this.setState({ y: evt.target.value });
   };
+
+  populateBoard = () => {
+    const data = {};
+    const { x, y } = this.state;
+    for (var i = 0; i < y; i++) {
+      for (var j = 0; j < x; j++) {
+        let id = `${i},${j}`;
+        if (Math.random() > 0.5) data[id] = "alive";
+        else data[id] = "dead";
+      }
+      this.setState({ data });
+    }
+  };
+
 }
 
 export default App;
