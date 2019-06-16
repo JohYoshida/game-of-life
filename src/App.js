@@ -24,6 +24,7 @@ class App extends Component {
           updateInputY={this.updateInputY}
           populateBoard={this.populateBoard}
           evolveState={this.evolveState}
+          runEvolution={this.runEvolution}
         />
         <GameBoard x={x} y={y} data={data} />
       </div>
@@ -72,6 +73,16 @@ class App extends Component {
     // update data
     this.setState({ data: updatedData });
   };
+
+  runEvolution = () => {
+    for (var i = 0; i < 100; i++) {
+      setTimeout(() => {
+        this.evolveState();
+      }, 3000);
+    }
+    console.log("Evolution finished");
+  };
+}
 
 function checkNeighbours(data, i, j) {
   let aliveCount = 0;
