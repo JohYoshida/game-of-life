@@ -31,6 +31,7 @@ class Controls extends Component {
           </div>
           <div>
             <button type="button" onClick={this.props.populateBoard}>Populate</button>
+            <button type="button" onClick={this.props.evolveState}>Evolve Once</button>
           </div>
         </form>
       </div>
