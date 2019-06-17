@@ -11,7 +11,7 @@ class App extends Component {
       y: 25,
       data: {},
       history: [],
-      index: 0,
+      index: 0
     };
   }
 
@@ -32,7 +32,7 @@ class App extends Component {
           runEvolution={this.runEvolution}
           showPastState={this.showPastState}
         />
-        <GameBoard x={x} y={y} data={data} />
+        <GameBoard x={x} y={y} data={data} index={index} />
       </div>
     );
   }

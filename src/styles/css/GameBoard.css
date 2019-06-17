@@ -6,12 +6,132 @@
   font-size: 6px;
 }
 
-.alive {
-  background-color: green;
+.alive-red {
+  background-color: #aa2e25;
 }
 
-.dead {
-  background-color: red;
+.dead-red {
+  background-color: #f6685e;
+}
+
+.alive-pink {
+  background-color: #a31545;
+}
+
+.dead-pink {
+  background-color: #ed4b82;
+}
+
+.alive-purple {
+  background-color: #6d1b7b;
+}
+
+.dead-purple {
+  background-color: #af52bf;
+}
+
+.alive-deepPurple {
+  background-color: #482880;
+}
+
+.dead-deepPurple {
+  background-color: #8561c5;
+}
+
+.alive-indigo {
+  background-color: #2c387e;
+}
+
+.dead-indigo {
+  background-color: #6573c3;
+}
+
+.alive-blue {
+  background-color: #1769aa;
+}
+
+.dead-blue {
+  background-color: #4dabf5;
+}
+
+.alive-lightBlue {
+  background-color: #0276aa;
+}
+
+.dead-lightBlue {
+  background-color: #35baf6;
+}
+
+.alive-cyan {
+  background-color: #008394;
+}
+
+.dead-cyan {
+  background-color: #33c9dc;
+}
+
+.alive-teal {
+  background-color: #00695f;
+}
+
+.dead-teal {
+  background-color: #33ab9f;
+}
+
+.alive-green {
+  background-color: #357a38;
+}
+
+.dead-green {
+  background-color: #6fbf73;
+}
+
+.alive-lightGreen {
+  background-color: #618833;
+}
+
+.dead-lightGreen {
+  background-color: #a2cf6e;
+}
+
+.alive-lime {
+  background-color: #8f9a27;
+}
+
+.dead-lime {
+  background-color: #d7e360;
+}
+
+.alive-yellow {
+  background-color: #b2a429;
+}
+
+.dead-yellow {
+  background-color: #ffef62;
+}
+
+.alive-amber {
+  background-color: #b28704;
+}
+
+.dead-amber {
+  background-color: #ffcd38;
+}
+
+.alive-orange {
+  background-color: #b26a00;
+}
+
+.dead-orange {
+  background-color: #ffac33;
+}
+
+.alive-deepOrange {
+  background-color: #b23c17;
+}
+
+.dead-deepOrange {
+  background-color: #ff784e;
 }
 
 .board {
