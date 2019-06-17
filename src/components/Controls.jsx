@@ -34,6 +34,18 @@ class Controls extends Component {
             <button type="button" onClick={this.props.evolveState}>Evolve Once</button>
             <button type="button" onClick={this.props.runEvolution}>Run Evolution!</button>
           </div>
+          <div>
+            <label>History</label>
+            <input
+              type="range"
+              name="history"
+              min="0"
+              max={this.props.length}
+              step="1"
+              value={this.props.index}
+              onChange={evt => this.props.showPastState(evt)} />
+            <label>{this.props.index}</label>
+          </div>
         </form>
       </div>
     );

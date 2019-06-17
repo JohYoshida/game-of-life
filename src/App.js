@@ -9,22 +9,28 @@ class App extends Component {
     this.state = {
       x: 25,
       y: 25,
-      data: {}
+      data: {},
+      history: [],
+      index: 0,
     };
   }
 
   render() {
-    const { x, y, data } = this.state;
+    const { x, y, data, history, index } = this.state;
+    let length = history.length - 1;
     return (
       <div className="App">
         <Controls
           x={x}
           y={y}
+          index={index}
+          length={length}
           updateInputX={this.updateInputX}
           updateInputY={this.updateInputY}
           populateBoard={this.populateBoard}
           evolveState={this.evolveState}
           runEvolution={this.runEvolution}
+          showPastState={this.showPastState}
         />
         <GameBoard x={x} y={y} data={data} />
       </div>
@@ -42,19 +48,21 @@ class App extends Component {
   populateBoard = () => {
     const data = {};
     const { x, y } = this.state;
+    const history = [];
     for (var i = 0; i < y; i++) {
       for (var j = 0; j < x; j++) {
         let id = `${i},${j}`;
         if (Math.random() > 0.5) data[id] = "alive";
         else data[id] = "dead";
       }
-      this.setState({ data });
     }
+    history.push(data);
+    this.setState({ data, history, index: 0 });
   };
 
   evolveState = () => {
     // copy data from state
-    const { x, y, data } = this.state;
+    const { x, y, data, history } = this.state;
     const updatedData = {};
     // iterate through data
     for (var i = 0; i < y; i++) {
@@ -71,7 +79,8 @@ class App extends Component {
       }
     }
     // update data
-    this.setState({ data: updatedData });
+    history.push(updatedData);
+    this.setState({ data: updatedData, history, index: history.length - 1 });
   };
 
   runEvolution = () => {
@@ -81,6 +90,12 @@ class App extends Component {
       }, 3000);
     }
     console.log("Evolution finished");
+  };
+
+  showPastState = evt => {
+    const index = evt.target.value;
+    const { history } = this.state;
+    this.setState({ index, data: history[index] });
   };
 }
 
