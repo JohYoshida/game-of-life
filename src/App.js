@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import KeyHandler, { KEYPRESS } from "react-key-handler"
 import Controls from "./components/Controls";
 import GameBoard from "./components/GameBoard";
 import "./App.css";
@@ -33,6 +34,16 @@ class App extends Component {
           showPastState={this.showPastState}
         />
         <GameBoard x={x} y={y} data={data} index={index} />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="a"
+          onKeyHandle={this.handleKeyPress}
+        />
+        <KeyHandler
+          keyEventName={KEYPRESS}
+          keyValue="d"
+          onKeyHandle={this.handleKeyPress}
+        />
       </div>
     );
   }
@@ -49,6 +60,20 @@ class App extends Component {
     const index = evt.target.value;
     const { history } = this.state;
     this.setState({ index, data: history[index] });
+  };
+
+  handleKeyPress = evt => {
+    const { history, index } = this.state;
+    if (evt.key === "a") {
+      this.setState({ data: history[index - 1], index: index - 1 });
+    }
+    if (evt.key === "d") {
+      if (index === history.length - 1) {
+        this.evolveState();
+      } else {
+        this.setState({ data: history[index + 1], index: index + 1 });
+      }
+    }
   };
 
   populateBoard = () => {
