@@ -65,10 +65,14 @@ class App extends Component {
   handleKeyPress = evt => {
     const { history, index } = this.state;
     if (evt.key === "a") {
-      this.setState({ data: history[index - 1], index: index - 1 });
+      if (history.length > 0 && index > 0) {
+        this.setState({ data: history[index - 1], index: index - 1 });
+      }
     }
     if (evt.key === "d") {
-      if (index === history.length - 1) {
+      if (history.length === 0)  {
+        this.populateBoard();
+      } else if (index === history.length - 1) {
         this.evolveState();
       } else {
         this.setState({ data: history[index + 1], index: index + 1 });
