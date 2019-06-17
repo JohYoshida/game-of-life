@@ -49,11 +49,11 @@ class App extends Component {
   }
 
   updateInputX = evt => {
-    this.setState({ x: evt.target.value });
+    this.setState({ x: evt.target.value, data: {}, history: [], index: 0 });
   };
 
   updateInputY = evt => {
-    this.setState({ y: evt.target.value });
+    this.setState({ y: evt.target.value, data: {}, history: [], index: 0 });
   };
 
   showPastState = evt => {
