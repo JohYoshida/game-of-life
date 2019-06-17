@@ -45,6 +45,12 @@ class App extends Component {
     this.setState({ y: evt.target.value });
   };
 
+  showPastState = evt => {
+    const index = evt.target.value;
+    const { history } = this.state;
+    this.setState({ index, data: history[index] });
+  };
+
   populateBoard = () => {
     const data = {};
     const { x, y } = this.state;
@@ -90,12 +96,6 @@ class App extends Component {
       }, 3000);
     }
     console.log("Evolution finished");
-  };
-
-  showPastState = evt => {
-    const index = evt.target.value;
-    const { history } = this.state;
-    this.setState({ index, data: history[index] });
   };
 }
 
