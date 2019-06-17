@@ -6,6 +6,30 @@
   font-size: 6px;
 }
 
+%tile {
+  border: 1px solid aliceblue;
+  padding: 5px;
+  font-size: 6px;
+}
+
+.small {
+  @extend %tile;
+  height: 20px;
+  width: 20px;
+}
+
+.medium {
+  @extend %tile;
+  height: 10px;
+  width: 10px;
+}
+
+.large {
+  @extend %tile;
+  height: 1px;
+  width: 1px;
+}
+
 .alive-red {
   background-color: #aa2e25;
 }

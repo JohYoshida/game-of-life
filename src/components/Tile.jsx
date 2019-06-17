@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class Tile extends Component {
   render() {
-    const { tileData, variant } = this.props;
-    let className = "tile";
+    const { tileData, variant, area } = this.props;
+    let className = "tile " + area;
     if (tileData === "alive") className += " alive";
     else className += " dead";
     switch (variant) {
