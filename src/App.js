@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import KeyHandler, { KEYPRESS } from "react-key-handler";
+import KeyHandler from "react-key-handler";
 import Controls from "./components/Controls";
 import GameBoard from "./components/GameBoard";
 import "./App.css";
@@ -44,12 +44,10 @@ class App extends Component {
           flipTile={this.flipTile}
         />
         <KeyHandler
-          keyEventName={KEYPRESS}
           keyValue="a"
           onKeyHandle={this.handleKeyPress}
         />
         <KeyHandler
-          keyEventName={KEYPRESS}
           keyValue="d"
           onKeyHandle={this.handleKeyPress}
         />
