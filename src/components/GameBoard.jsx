@@ -16,7 +16,7 @@ class GameBoard extends Component {
     // Size
     let area = x * y;
     if (area < 625) area = "small";
-    else if (area >= 654 && area < 2500) area = "medium";
+    else if (area >= 625 && area < 2500) area = "medium";
     else area = "large";
     // Make each row
     for (var i = 0; i < y; i++) {
