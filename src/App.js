@@ -108,6 +108,7 @@ class App extends Component {
     else cellData = "alive";
     data[id] = cellData;
     history = history.slice(0, index);
+    history.push(data);
     this.setState({ data, history });
   };
 
