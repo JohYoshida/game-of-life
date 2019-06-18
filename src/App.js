@@ -33,7 +33,7 @@ class App extends Component {
           runEvolution={this.runEvolution}
           showPastState={this.showPastState}
         />
-        <GameBoard x={x} y={y} data={data} index={index} />
+        <GameBoard x={x} y={y} data={data} index={index} flipTile={this.flipTile} />
         <KeyHandler
           keyEventName={KEYPRESS}
           keyValue="a"
@@ -79,6 +79,15 @@ class App extends Component {
       }
     }
   };
+
+  flipTile = (id, tileData) => {
+    let { data, index, history } = this.state;
+    if (tileData === "alive") tileData = "dead";
+    else tileData = "alive";
+    data[id] = tileData;
+    history = history.slice(0, index);
+    this.setState({ data, history });
+  }
 
   populateBoard = () => {
     const data = {};

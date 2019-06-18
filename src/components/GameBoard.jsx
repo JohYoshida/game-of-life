@@ -25,7 +25,14 @@ class GameBoard extends Component {
         let id = `${i},${j}`;
         const tileData = data[id];
         row.push(
-          <Tile id={id} key={id} tileData={tileData} variant={variant} area={area} />
+          <Tile
+            id={id}
+            key={id}
+            tileData={tileData}
+            variant={variant}
+            area={area}
+            flipTile={this.props.flipTile}
+          />
         );
       }
       // Add row to GameBoard

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 
 class Tile extends Component {
   render() {
-    const { area, tileData, variant } = this.props;
+    const { area, tileData, variant, id } = this.props;
     const className = makeClassName(area, tileData, variant);
-    return <div className={className} />;
+    return <div className={className} onClick={this.props.flipTile.bind(this, id, tileData)} />;
   }
 }
 
