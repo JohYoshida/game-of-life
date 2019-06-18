@@ -15,7 +15,8 @@ class Controls extends Component {
                 max="99"
                 step="1"
                 value={this.props.x}
-                onChange={evt => this.props.updateInputX(evt)} />
+                onChange={evt => this.props.updateInputX(evt)}
+              />
               <label>{this.props.x}</label>
             </div>
             <div>
@@ -27,15 +28,24 @@ class Controls extends Component {
                 max="99"
                 step="1"
                 value={this.props.y}
-                onChange={evt => this.props.updateInputY(evt)} />
+                onChange={evt => this.props.updateInputY(evt)}
+              />
               <label>{this.props.y}</label>
             </div>
           </div>
           <div className="Buttons">
-            <button type="button" onClick={this.props.populateBoard}>Randomize</button>
-            <button type="button" onClick={this.props.resetBoard}>Reset</button>
-            <button type="button" onClick={this.props.evolveState}>Evolve Once</button>
-            <button type="button" onClick={this.props.runEvolution}>Run Evolution!</button>
+            <button type="button" onClick={this.props.populateBoard}>
+              Randomize
+            </button>
+            <button type="button" onClick={this.props.resetBoard}>
+              Reset
+            </button>
+            <button type="button" onClick={this.props.evolveState}>
+              Evolve Once
+            </button>
+            <button type="button" onClick={this.props.runEvolution}>
+              Run Evolution!
+            </button>
           </div>
           <div className="History">
             <label>History</label>
@@ -46,7 +56,8 @@ class Controls extends Component {
               max={this.props.length}
               step="1"
               value={this.props.index}
-              onChange={evt => this.props.showPastState(evt)} />
+              onChange={evt => this.props.showPastState(evt)}
+            />
             <label>{this.props.index}</label>
           </div>
           <div className="Instructions">

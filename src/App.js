@@ -13,7 +13,7 @@ class App extends Component {
       data: {},
       history: [],
       index: 0,
-      offset: 0,
+      offset: 0
     };
   }
 
@@ -43,14 +43,8 @@ class App extends Component {
           offset={offset}
           flipCell={this.flipCell}
         />
-        <KeyHandler
-          keyValue="a"
-          onKeyHandle={this.handleKeyPress}
-        />
-        <KeyHandler
-          keyValue="d"
-          onKeyHandle={this.handleKeyPress}
-        />
+        <KeyHandler keyValue="a" onKeyHandle={this.handleKeyPress} />
+        <KeyHandler keyValue="d" onKeyHandle={this.handleKeyPress} />
       </div>
     );
   }
@@ -94,15 +88,18 @@ class App extends Component {
     }
     if (evt.key === "d") {
       let size = Object.keys(data).length;
-      if (size === 0) { // No data
+      if (size === 0) {
+        // No data
         this.populateBoard();
       } else {
-        if (history.length - 1 === index) { // Most recent state
+        if (history.length - 1 === index) {
+          // Most recent state
           this.evolveState();
-        } else { // Intermediate state
+        } else {
+          // Intermediate state
           this.setState({
             data: history[index + 1],
-            index: index + 1,
+            index: index + 1
           });
         }
       }
@@ -135,7 +132,7 @@ class App extends Component {
       data,
       history,
       index: 0,
-      offset: Math.floor(Math.random() * 16),
+      offset: Math.floor(Math.random() * 16)
     });
   };
 

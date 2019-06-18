@@ -4,7 +4,12 @@ class Cell extends Component {
   render() {
     const { area, cellData, variant, id } = this.props;
     const className = makeClassName(area, cellData, variant);
-    return <div className={className} onClick={this.props.flipCell.bind(this, id, cellData)} />;
+    return (
+      <div
+        className={className}
+        onClick={this.props.flipCell.bind(this, id, cellData)}
+      />
+    );
   }
 }
 
