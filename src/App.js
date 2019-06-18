@@ -68,7 +68,7 @@ class App extends Component {
   };
 
   showPastState = evt => {
-    const index = evt.target.value;
+    const index = Number(evt.target.value);
     const { history } = this.state;
     this.setState({
       index,
