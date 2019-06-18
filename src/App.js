@@ -94,10 +94,17 @@ class App extends Component {
     }
     if (evt.key === "d") {
       let size = Object.keys(data).length;
-      if (size === 0) {
+      if (size === 0) { // No data
         this.populateBoard();
       } else {
-        this.evolveState();
+        if (history.length - 1 === index) { // Most recent state
+          this.evolveState();
+        } else { // Intermediate state
+          this.setState({
+            data: history[index + 1],
+            index: index + 1,
+          });
+        }
       }
     }
   };
