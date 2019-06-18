@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 
-class Tile extends Component {
+class Cell extends Component {
   render() {
-    const { area, tileData, variant, id } = this.props;
-    const className = makeClassName(area, tileData, variant);
-    return <div className={className} onClick={this.props.flipTile.bind(this, id, tileData)} />;
+    const { area, cellData, variant, id } = this.props;
+    const className = makeClassName(area, cellData, variant);
+    return <div className={className} onClick={this.props.flipCell.bind(this, id, cellData)} />;
   }
 }
 
-function makeClassName(area, tileData, variant) {
-  let className = "tile " + area;
-  if (tileData === "alive") className += " alive";
+function makeClassName(area, cellData, variant) {
+  let className = "cell " + area;
+  if (cellData === "alive") className += " alive";
   else className += " dead";
   switch (variant) {
     case 0:
@@ -62,9 +62,9 @@ function makeClassName(area, tileData, variant) {
       className += "-teal";
       break;
     default:
-      console.log("Error choosing color in Tile.jsx");
+      console.log("Error choosing color in Cell.jsx");
   }
   return className;
 }
 
-export default Tile;
+export default Cell;

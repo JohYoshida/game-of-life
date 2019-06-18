@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Tile from "./Tile";
+import Cell from "./Cell";
 
 class GameBoard extends Component {
   render() {
@@ -20,18 +20,18 @@ class GameBoard extends Component {
     else area = "large";
     // Make each row
     for (var i = 0; i < y; i++) {
-      // Make each tile
+      // Make each cell
       for (var j = 0; j < x; j++) {
         let id = `${i},${j}`;
-        const tileData = data[id];
+        const cellData = data[id];
         row.push(
-          <Tile
+          <Cell
             id={id}
             key={id}
-            tileData={tileData}
+            cellData={cellData}
             variant={variant}
             area={area}
-            flipTile={this.props.flipTile}
+            flipCell={this.props.flipCell}
           />
         );
       }

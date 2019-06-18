@@ -1,4 +1,4 @@
-.tile {
+.cell {
   height: 10px;
   width: 10px;
   border: 1px solid aliceblue;
@@ -155,4 +155,4 @@
   background-color: #ff784e;
 }
 
-/*# sourceMappingURL=Tile.css.map */
+/*# sourceMappingURL=Cell.css.map */

@@ -41,7 +41,7 @@ class App extends Component {
           data={data}
           index={index}
           offset={offset}
-          flipTile={this.flipTile}
+          flipCell={this.flipCell}
         />
         <KeyHandler
           keyValue="a"
@@ -102,11 +102,11 @@ class App extends Component {
     }
   };
 
-  flipTile = (id, tileData) => {
+  flipCell = (id, cellData) => {
     let { data, index, history } = this.state;
-    if (tileData === "alive") tileData = "dead";
-    else tileData = "alive";
-    data[id] = tileData;
+    if (cellData === "alive") cellData = "dead";
+    else cellData = "alive";
+    data[id] = cellData;
     history = history.slice(0, index);
     this.setState({ data, history });
   };
