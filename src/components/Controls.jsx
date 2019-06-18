@@ -30,7 +30,8 @@ class Controls extends Component {
             <label>{this.props.y}</label>
           </div>
           <div>
-            <button type="button" onClick={this.props.populateBoard}>Populate</button>
+            <button type="button" onClick={this.props.populateBoard}>Randomize</button>
+            <button type="button" onClick={this.props.resetBoard}>Reset</button>
             <button type="button" onClick={this.props.evolveState}>Evolve Once</button>
             <button type="button" onClick={this.props.runEvolution}>Run Evolution!</button>
           </div>

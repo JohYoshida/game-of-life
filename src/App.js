@@ -29,6 +29,7 @@ class App extends Component {
           updateInputX={this.updateInputX}
           updateInputY={this.updateInputY}
           populateBoard={this.populateBoard}
+          resetBoard={this.resetBoard}
           evolveState={this.evolveState}
           runEvolution={this.runEvolution}
           showPastState={this.showPastState}
@@ -103,6 +104,14 @@ class App extends Component {
     history.push(data);
     this.setState({ data, history, index: 0 });
   };
+
+  resetBoard = () => {
+    this.setState({
+      data: {},
+      history: [],
+      index: 0
+    });
+  }
 
   evolveState = () => {
     // copy data from state
