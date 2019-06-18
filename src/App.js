@@ -83,7 +83,7 @@ class App extends Component {
   };
 
   handleKeyPress = evt => {
-    const { history, index } = this.state;
+    const { history, data, index } = this.state;
     if (evt.key === "a") {
       if (history.length > 0 && index > 0) {
         this.setState({
@@ -93,15 +93,11 @@ class App extends Component {
       }
     }
     if (evt.key === "d") {
-      if (history.length === 0) {
+      let size = Object.keys(data).length;
+      if (size === 0) {
         this.populateBoard();
-      } else if (index === history.length - 1) {
-        this.evolveState();
       } else {
-        this.setState({
-          data: history[index + 1],
-          index: index + 1
-        });
+        this.evolveState();
       }
     }
   };
