@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import KeyHandler, { KEYPRESS } from "react-key-handler"
+import KeyHandler, { KEYPRESS } from "react-key-handler";
 import Controls from "./components/Controls";
 import GameBoard from "./components/GameBoard";
 import "./App.css";
@@ -34,7 +34,13 @@ class App extends Component {
           runEvolution={this.runEvolution}
           showPastState={this.showPastState}
         />
-        <GameBoard x={x} y={y} data={data} index={index} flipTile={this.flipTile} />
+        <GameBoard
+          x={x}
+          y={y}
+          data={data}
+          index={index}
+          flipTile={this.flipTile}
+        />
         <KeyHandler
           keyEventName={KEYPRESS}
           keyValue="a"
@@ -50,33 +56,52 @@ class App extends Component {
   }
 
   updateInputX = evt => {
-    this.setState({ x: evt.target.value, data: {}, history: [], index: 0 });
+    this.setState({
+      x: evt.target.value,
+      data: {},
+      history: [],
+      index: 0
+    });
   };
 
   updateInputY = evt => {
-    this.setState({ y: evt.target.value, data: {}, history: [], index: 0 });
+    this.setState({
+      y: evt.target.value,
+      data: {},
+      history: [],
+      index: 0
+    });
   };
 
   showPastState = evt => {
     const index = evt.target.value;
     const { history } = this.state;
-    this.setState({ index, data: history[index] });
+    this.setState({
+      index,
+      data: history[index]
+    });
   };
 
   handleKeyPress = evt => {
     const { history, index } = this.state;
     if (evt.key === "a") {
       if (history.length > 0 && index > 0) {
-        this.setState({ data: history[index - 1], index: index - 1 });
+        this.setState({
+          data: history[index - 1],
+          index: index - 1
+        });
       }
     }
     if (evt.key === "d") {
-      if (history.length === 0)  {
+      if (history.length === 0) {
         this.populateBoard();
       } else if (index === history.length - 1) {
         this.evolveState();
       } else {
-        this.setState({ data: history[index + 1], index: index + 1 });
+        this.setState({
+          data: history[index + 1],
+          index: index + 1
+        });
       }
     }
   };
@@ -88,7 +113,7 @@ class App extends Component {
     data[id] = tileData;
     history = history.slice(0, index);
     this.setState({ data, history });
-  }
+  };
 
   populateBoard = () => {
     const data = {};
@@ -111,7 +136,7 @@ class App extends Component {
       history: [],
       index: 0
     });
-  }
+  };
 
   evolveState = () => {
     // copy data from state
@@ -133,7 +158,11 @@ class App extends Component {
     }
     // update data
     history.push(updatedData);
-    this.setState({ data: updatedData, history, index: history.length - 1 });
+    this.setState({
+      data: updatedData,
+      index: history.length - 1,
+      history
+    });
   };
 
   runEvolution = () => {
@@ -195,6 +224,7 @@ function decideFate(id, isAlive, aliveCount, updatedData) {
     }
   } else {
     if (aliveCount === 3) {
+      // reproduction
       updatedData[id] = "alive";
     } else updatedData[id] = "dead";
   }
