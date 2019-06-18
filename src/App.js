@@ -12,12 +12,13 @@ class App extends Component {
       y: 25,
       data: {},
       history: [],
-      index: 0
+      index: 0,
+      offset: 0,
     };
   }
 
   render() {
-    const { x, y, data, history, index } = this.state;
+    const { x, y, data, history, index, offset } = this.state;
     let length = history.length - 1;
     return (
       <div className="App">
@@ -39,6 +40,7 @@ class App extends Component {
           y={y}
           data={data}
           index={index}
+          offset={offset}
           flipTile={this.flipTile}
         />
         <KeyHandler
@@ -123,14 +125,20 @@ class App extends Component {
       }
     }
     history.push(data);
-    this.setState({ data, history, index: 0 });
+    this.setState({
+      data,
+      history,
+      index: 0,
+      offset: Math.floor(Math.random() * 16),
+    });
   };
 
   resetBoard = () => {
     this.setState({
       data: {},
       history: [],
-      index: 0
+      index: 0,
+      offset: Math.floor(Math.random() * 16)
     });
   };
 

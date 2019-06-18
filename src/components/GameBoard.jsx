@@ -10,9 +10,9 @@ class GameBoard extends Component {
   makeGameBoard = () => {
     const GameBoard = [];
     let row = [];
-    const { x, y, data, index } = this.props;
+    const { x, y, data, index, offset } = this.props;
     // Color variant
-    const variant = Math.floor(index % 16);
+    const variant = Math.floor((index + offset) % 16);
     // Size
     let area = x * y;
     if (area < 625) area = "small";
