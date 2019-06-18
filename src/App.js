@@ -137,12 +137,12 @@ class App extends Component {
   };
 
   runEvolution = () => {
-    for (var i = 0; i < 100; i++) {
+    if (!this.state.data["0,0"]) this.populateBoard();
+    for (var i = 0; i < 10; i++) {
       setTimeout(() => {
         this.evolveState();
-      }, 3000);
+      }, 1000);
     }
-    console.log("Evolution finished");
   };
 }
 
