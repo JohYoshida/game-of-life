@@ -49,6 +49,7 @@ class Controls extends Component {
               onChange={evt => this.props.showPastState(evt)} />
             <label>{this.props.index}</label>
           </div>
+          <div className="Instructions">use a and d to explore history</div>
         </form>
       </div>
     );
