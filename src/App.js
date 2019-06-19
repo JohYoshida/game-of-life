@@ -29,7 +29,7 @@ class App extends Component {
           length={length}
           updateInputX={this.updateInputX}
           updateInputY={this.updateInputY}
-          populateBoard={this.populateBoard}
+          populateCells={this.populateCells}
           resetBoard={this.resetBoard}
           evolveState={this.evolveState}
           runEvolution={this.runEvolution}
@@ -90,7 +90,7 @@ class App extends Component {
       let size = Object.keys(data).length;
       if (size === 0) {
         // No data
-        this.populateBoard();
+        this.populateCells();
       } else {
         if (history.length - 1 === index) {
           // Most recent state
@@ -116,7 +116,7 @@ class App extends Component {
     this.setState({ data, history });
   };
 
-  populateBoard = () => {
+  populateCells = () => {
     const data = {};
     const { x, y } = this.state;
     const history = [];
@@ -175,7 +175,7 @@ class App extends Component {
   runEvolution = () => {
     let size = Object.keys(this.state.data).length;
     if (size === 0) {
-      this.populateBoard();
+      this.populateCells();
     }
     for (var i = 0; i < 10; i++) {
       setTimeout(() => {

@@ -34,7 +34,7 @@ class Controls extends Component {
             </div>
           </div>
           <div className="Buttons">
-            <button type="button" onClick={this.props.populateBoard}>
+            <button type="button" onClick={this.props.populateCells}>
               Randomize
             </button>
             <button type="button" onClick={this.props.resetBoard}>
