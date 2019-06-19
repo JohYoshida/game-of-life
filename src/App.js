@@ -34,6 +34,9 @@ class App extends Component {
           evolveState={this.evolveState}
           runEvolution={this.runEvolution}
           showPastState={this.showPastState}
+          selectSingleStamp={this.selectSingleStamp}
+          selectDiamondStamp={this.selectDiamondStamp}
+          selectPulsarStamp={this.selectPulsarStamp}
         />
         <GameBoard
           x={x}
@@ -183,6 +186,22 @@ class App extends Component {
       }, 1000);
     }
   };
+
+  selectSingleStamp = () =>{
+    this.setState({ stamp: "single" });
+  };
+
+  selectDiamondStamp = () => {
+    this.setState({
+      stamp: "diamond"
+    });
+  };
+
+  selectPulsarStamp = () => {
+    this.setState({
+      stamp: "pulsar"
+    });
+  }
 }
 
 function checkNeighbours(data, i, j) {

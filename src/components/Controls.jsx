@@ -60,6 +60,17 @@ class Controls extends Component {
             />
             <label>{this.props.index}</label>
           </div>
+          <div className="Stamps">
+            <button type="button" onClick={this.props.selectSingleStamp}>
+              Single
+            </button>
+            <button type="button" onClick={this.props.selectDiamondStamp}>
+              Diamond
+            </button>
+            <button type="button" onClick={this.props.selectPulsarStamp}>
+              Pulsar
+            </button>
+          </div>
           <div className="Instructions">
             <div>click on a cell to populate or depopulate</div>
             <div>use a and d to explore history</div>
