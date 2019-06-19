@@ -27,6 +27,10 @@
   width: 1px;
 }
 
+.hover {
+  background-color: rgba(120, 120, 120, 0.78) !important;
+}
+
 .alive-red {
   background-color: #aa2e25;
 }
