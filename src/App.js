@@ -173,7 +173,10 @@ class App extends Component {
   };
 
   runEvolution = () => {
-    if (!this.state.data["0,0"]) this.populateBoard();
+    let size = Object.keys(this.state.data).length;
+    if (size === 0) {
+      this.populateBoard();
+    }
     for (var i = 0; i < 10; i++) {
       setTimeout(() => {
         this.evolveState();
