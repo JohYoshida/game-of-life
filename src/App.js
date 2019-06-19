@@ -11,14 +11,16 @@ class App extends Component {
       x: 25,
       y: 25,
       data: {},
+      hoverData: {},
       history: [],
       index: 0,
-      offset: 0
+      offset: 0,
+      stamp: "none"
     };
   }
 
   render() {
-    const { x, y, data, history, index, offset } = this.state;
+    const { x, y, data, hoverData, history, index, offset } = this.state;
     let length = history.length - 1;
     return (
       <div className="App">
@@ -42,9 +44,12 @@ class App extends Component {
           x={x}
           y={y}
           data={data}
+          hoverData={hoverData}
           index={index}
           offset={offset}
           flipCell={this.flipCell}
+          setHoverData={this.setHoverData}
+          removeHoverData={this.removeHoverData}
         />
         <KeyHandler keyValue="a" onKeyHandle={this.handleKeyPress} />
         <KeyHandler keyValue="d" onKeyHandle={this.handleKeyPress} />
@@ -110,14 +115,55 @@ class App extends Component {
   };
 
   flipCell = (id, cellData) => {
-    let { data, index, history } = this.state;
-    if (cellData === "alive") cellData = "dead";
-    else cellData = "alive";
-    data[id] = cellData;
+    let { data, index, history, stamp, hoverData } = this.state;
+    switch (stamp) {
+      case "single":
+        if (cellData === "alive") cellData = "dead";
+        else cellData = "alive";
+        data[id] = cellData;
+        break;
+      case "diamond":
+      case "pulsar":
+        for (let item in hoverData) {
+          data[item] = "alive";
+        }
+        break;
+      default:
+        console.log('error');
+    }
     history = history.slice(0, index);
     history.push(data);
-    this.setState({ data, history });
+    this.setState({ data, history, hoverData: {} });
   };
+
+  setHoverData = (id, cellData) => {
+    let { stamp } = this.state;
+    let hoverData = {};
+    // Convert id into Number coordinates
+    const coords = id.split(",").map(i => {
+      return Number(i);
+    });
+    switch (stamp) {
+      case "single":
+        hoverData[id] = true;
+        break;
+      case "diamond":
+        // Add diamond coords to list
+        hoverData = addDiamondCoords(coords);
+        break;
+      case "pulsar":
+        // Add diamond coords to list
+        hoverData = addPulsarCoords(coords);
+        break;
+      default:
+        console.log("default");
+    }
+    this.setState({ hoverData });
+  };
+
+  removeHoverData = () => {
+    this.setState({ hoverData: {} });
+  }
 
   populateCells = () => {
     const data = {};
@@ -257,6 +303,187 @@ function decideFate(id, isAlive, aliveCount, updatedData) {
       updatedData[id] = "alive";
     } else updatedData[id] = "dead";
   }
+}
+
+function addDiamondCoords(coords) {
+  const hoverData = {};
+  let list = [];
+  let coordinate;
+  // Top
+  coordinate = coords.slice(0);
+  coordinate[0] += -2
+  list.push(coordinate);
+  // Top left
+  coordinate = coords.slice(0);
+  coordinate[0] += -1
+  coordinate[1] += -1
+  list.push(coordinate)
+  // Top right
+  coordinate = coords.slice(0);
+  coordinate[0] += -1
+  coordinate[1] += 1
+  list.push(coordinate);
+  // Left
+  coordinate = coords.slice(0);
+  coordinate[1] += -2
+  list.push(coordinate);
+  // Right
+  coordinate = coords.slice(0);
+  coordinate[1] += 2
+  list.push(coordinate);
+  // Bottom left
+  coordinate = coords.slice(0);
+  coordinate[0] += 1
+  coordinate[1] += -1
+  list.push(coordinate);
+  // Bottom right
+  coordinate = coords.slice(0);
+  coordinate[0] += 1
+  coordinate[1] += 1
+  list.push(coordinate);
+  // Bottom
+  coordinate = coords.slice(0);
+  coordinate[0] += 2
+  list.push(coordinate);
+  // Add to hoverData
+  list.forEach(i => {
+    let coord = i.toString();
+    hoverData[coord] = true;
+  });
+  return hoverData;
+}
+
+function addPulsarCoords(coords) {
+  const hoverData = {};
+  let list = [];
+  let coordinate;
+  // Top row
+  coordinate = coords.slice(0);
+  coordinate[0] += -6;
+  coordinate[1] += -4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  // Center top row
+  coordinate = coords.slice(0);
+  coordinate[0] += -1;
+  coordinate[1] += -4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  // Center bottom row
+  coordinate = coords.slice(0);
+  coordinate[0] += 1;
+  coordinate[1] += -4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  // Bottom row
+  coordinate = coords.slice(0);
+  coordinate[0] += 6;
+  coordinate[1] += -4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 4;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  coordinate[1] += 1;
+  list.push(coordinate.toString());
+  // Left column
+  coordinate = coords.slice(0);
+  coordinate[1] += -6;
+  coordinate[0] += -4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  // Center left column
+  coordinate = coords.slice(0);
+  coordinate[1] += -1;
+  coordinate[0] += -4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  // Center right column
+  coordinate = coords.slice(0);
+  coordinate[1] += 1;
+  coordinate[0] += -4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  // Right column
+  coordinate = coords.slice(0);
+  coordinate[1] += 6;
+  coordinate[0] += -4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 4;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+  coordinate[0] += 1;
+  list.push(coordinate.toString());
+
+  // Add to hoverData
+  list.forEach(i => {
+    let coord = i.toString();
+    hoverData[coord] = true;
+  });
+  return hoverData;
 }
 
 export default App;

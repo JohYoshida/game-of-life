@@ -10,7 +10,7 @@ class GameBoard extends Component {
   makeGameBoard = () => {
     const GameBoard = [];
     let row = [];
-    const { x, y, data, index, offset } = this.props;
+    const { x, y, data, hoverData, index, offset } = this.props;
     // Color variant
     const variant = Math.floor((index + offset) % 16);
     // Size
@@ -24,14 +24,18 @@ class GameBoard extends Component {
       for (var j = 0; j < x; j++) {
         let id = `${i},${j}`;
         const cellData = data[id];
+        const hover = (hoverData[id]) ? true : false;
         row.push(
           <Cell
             id={id}
             key={id}
             cellData={cellData}
+            hover={hover}
             variant={variant}
             area={area}
             flipCell={this.props.flipCell}
+            setHoverData={this.props.setHoverData}
+            removeHoverData={this.props.removeHoverData}
           />
         );
       }

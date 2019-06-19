@@ -2,19 +2,30 @@ import React, { Component } from "react";
 
 class Cell extends Component {
   render() {
-    const { area, cellData, variant, id } = this.props;
-    const className = makeClassName(area, cellData, variant);
+    const { area, cellData, hover, variant, id } = this.props;
+    const className = makeClassName(area, hover, cellData, variant);
     return (
       <div
         className={className}
         onClick={this.props.flipCell.bind(this, id, cellData)}
+        onMouseEnter={this.mouseEnter.bind(this, id, cellData)}
+        onMouseLeave={this.mouseLeave.bind(this)}
       />
     );
   }
+
+  mouseEnter = (id, cellData) => {
+    this.props.setHoverData(id, cellData);
+  };
+
+  mouseLeave = () => {
+    this.props.removeHoverData();
+  }
 }
 
-function makeClassName(area, cellData, variant) {
-  let className = "cell " + area;
+function makeClassName(area, hover, cellData, variant) {
+  let className = "cell " + area
+  if (hover) className += " hover";
   if (cellData === "alive") className += " alive";
   else className += " dead";
   switch (variant) {
